@@ -5,7 +5,10 @@
         "daily_income": "₹124",
         "total_return": "₹14880",
         "duration": "120day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250226/f2c509396ba2f274329f82f2a5bba63b.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250226/f2c509396ba2f274329f82f2a5bba63b.jpg",
+        "status": {
+            "pre": false
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken B",
@@ -13,7 +16,10 @@
         "daily_income": "₹525",
         "total_return": "₹73500",
         "duration": "140day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/8fc6017f0b937e2d20c4a5910a29b5b3.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/8fc6017f0b937e2d20c4a5910a29b5b3.jpg",
+        "status": {
+            "pre": false
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken C",
@@ -21,7 +27,10 @@
         "daily_income": "₹1383",
         "total_return": "₹221280",
         "duration": "160day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/179cfd671e5a7c5d96fba370be11d87f.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/179cfd671e5a7c5d96fba370be11d87f.jpg",
+        "status": {
+            "pre": false
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken D",
@@ -29,7 +38,10 @@
         "daily_income": "₹4082",
         "total_return": "₹734760",
         "duration": "180day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/70ea037df9a5dd14ee357371d32ac50f.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/70ea037df9a5dd14ee357371d32ac50f.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken E",
@@ -37,7 +49,10 @@
         "daily_income": "₹9000",
         "total_return": "₹1800000",
         "duration": "200day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/048056e7cbc34927b80abc3a7d85f817.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/048056e7cbc34927b80abc3a7d85f817.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken F",
@@ -45,7 +60,10 @@
         "daily_income": "₹15600",
         "total_return": "₹3432000",
         "duration": "220day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/0eb73040517eca19d5a2604c688ce66c.png"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/0eb73040517eca19d5a2604c688ce66c.png",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken G",
@@ -53,7 +71,10 @@
         "daily_income": "₹28142",
         "total_return": "₹6754080",
         "duration": "240day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/35f67459a4c174538b35137c95ef4aa1.jpeg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/35f67459a4c174538b35137c95ef4aa1.jpeg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken H",
@@ -61,7 +82,10 @@
         "daily_income": "₹40769",
         "total_return": "₹9784560",
         "duration": "240day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/ff5e0c540e4b43f2bdf35da6c5ad753c.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/ff5e0c540e4b43f2bdf35da6c5ad753c.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken L",
@@ -69,7 +93,10 @@
         "daily_income": "₹78333",
         "total_return": "₹18799920",
         "duration": "240day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/5f079766ce61af6e0949c990aa8a9763.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/5f079766ce61af6e0949c990aa8a9763.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken 1",
@@ -77,7 +104,10 @@
         "daily_income": "₹4500",
         "total_return": "₹13500",
         "duration": "3day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/03c34658cbce3bb57f10c4779c577e7f.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/03c34658cbce3bb57f10c4779c577e7f.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken 2",
@@ -85,7 +115,10 @@
         "daily_income": "₹12000",
         "total_return": "₹36000",
         "duration": "3day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/0d3a06738ac7d5078fea0c072410b199.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/0d3a06738ac7d5078fea0c072410b199.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken 3",
@@ -93,7 +126,10 @@
         "daily_income": "₹25000",
         "total_return": "₹75000",
         "duration": "3day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/4bdb49b1e0da6c88d2eaa7a02c7876f1.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/4bdb49b1e0da6c88d2eaa7a02c7876f1.jpg",
+        "status": {
+            "pre": true
+        }
     },
     {
         "name": "Daily income Daily withdrawal Heineken 4",
@@ -101,6 +137,9 @@
         "daily_income": "₹70000",
         "total_return": "₹70000",
         "duration": "1day",
-        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/026d44e18c210bc58c00a74d4e285178.jpg"
+        "image": "https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/026d44e18c210bc58c00a74d4e285178.jpg",
+        "status": {
+            "pre": true
+        }
     }
 ]

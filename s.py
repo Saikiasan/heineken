@@ -29,14 +29,23 @@ for item in soup.find_all('div', class_='sp-box'):
     total_return = details[2].find_all('span')[1].text.replace(':', '').strip()
     duration = details[3].find_all('span')[1].text.replace(':', '').strip()
     
-    # Append the extracted data to the list
+    # Check for the Pre-Sale status
+    status_obj = {}
+    pre_button = item.find('button', class_="btn-style yus")
+    if pre_button and "Pre-Sale" in pre_button.text:
+        status_obj["pre"] = True
+    else:
+        status_obj["pre"] = False
+    
+    # Append the extracted data along with status to the list
     products.append({
         'name': product_name,
         'price': price,
         'daily_income': daily_income,
         'total_return': total_return,
         'duration': duration,
-        'image': image
+        'image': image,
+        'status': status_obj
     })
 
 # Convert to JSON and save to a file
