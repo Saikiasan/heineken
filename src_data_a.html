@@ -1,0 +1,420 @@
+
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Home</title><link rel="stylesheet" href="/css/layui.css" /><script src="/js/layui.js"></script><link rel="stylesheet" href="/css/font/font.css" /><link rel="stylesheet" href="/css/index.css" /><style>
+      /********************** 首页  start ********************/
+      #root {
+        padding-bottom: 96px;
+        background: rgba(245, 245, 245, 1);
+      }
+      .header-top {
+        width: 100%;
+        position: relative;
+        height: 200px;
+      }
+      .header-top .text {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        font-family: "Arial";
+        font-size: 20px;
+        color: rgba(255, 255, 255, 1);
+        line-height: 1;
+      }
+
+      .header-top .icon-email {
+        position: absolute;
+        right: 17px;
+        top: 32px;
+        width: 25px;
+        cursor: pointer;
+      }
+
+      .ww {
+        padding: 0 10px;
+      }
+      .home-btn-wrap {
+        width: 355px;
+        height: 84px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+        display: flex;
+        justify-content: space-around;
+
+        margin: -38px auto 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .home-btn-wrap .group {
+        /* flex: 1; */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "ArialMT";
+        font-size: 8px;
+        color: rgba(0, 0, 0, 1);
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .home-btn-wrap .img-wrap {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 6px;
+      }
+      .home-btn-wrap img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .sp-plan-btn {
+        width: 100%;
+    /* height: 28px; */
+    /*border-radius: 40px;*/
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    margin-bottom: 25px;
+    display: flex
+;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    /* padding: 0 14px; */
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    border: solid 2px #176825;
+    padding: 3px;
+      }
+      .sp-plan-btn span {
+        font-family: "SegoeUI";
+        color: #176825;
+        font-size: 20px;
+        line-height: 1;
+      }
+      .sp-plan-btn .left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .layui-dropdown {
+        width: 90%;
+        max-width: 90%;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .sp-box {
+        width: 100%;
+        border-radius: 15px;
+
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        background-color: #fff;
+        font-family: "SegoeUI";
+        position: relative;
+        box-sizing: border-box;
+        margin-bottom: 40px;
+        z-index: 0;
+      }
+      /*.sp-box::after {*/
+      /*  content: "";*/
+      /*  position: absolute;*/
+      /*  width: 100%;*/
+      /*  height: 50px;*/
+      /*  top: 0;*/
+      /*  background: linear-gradient(*/
+      /*    180deg,*/
+      /*    #176825 0%,*/
+      /*    rgba(255, 255, 255, 1) 100%*/
+      /*  );*/
+      /*  border-radius: 15px;*/
+      /*  z-index: -1;*/
+      /*}*/
+      .sp-box .sp-pic {
+        width: 100%;
+        border-radius: 15px 15px 0px 0px;
+      }
+
+      .sp-box .title {
+        color: rgba(0, 0, 0, 1);
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .sp-box .wrap {
+        height: 65px;
+      }
+
+      .sp-box ul {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: space-evenly;
+        height: 85%;
+      }
+      .sp-box li {
+        min-width: 30%;
+        border: 2px solid #176825;
+    margin: 2px;
+      }
+      .sp-box .title-s {
+        font-size: 15px;
+        color: #176825;
+      }
+      .sp-box p {
+        color: rgba(0, 0, 0, 1);
+      }
+      .sp-box .btn-style {
+        width: 190px;
+        height: 35px;
+        /*border-radius: 15px;*/
+        background: rgba(255, 255, 255, 1);
+
+        border: 1px solid #176825;
+        font-size: 13px;
+        color: #176825;
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        cursor: pointer;
+      }
+
+      .mask-bg {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        /*display: none;*/
+      }
+      .mask-bg .pop {
+        width: 354px;
+        background-color: #fff;
+        box-sizing: border-box;
+        font-size: 14px;
+        color: rgba(3, 24, 49, 1);
+        border-radius: 15px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        position: relative;
+        padding-top: 20px;
+      }
+      .mask-bg .pop-close {
+        position: absolute;
+        top: 6px;
+        right: 5px;
+        width: 26px;
+        cursor: pointer;
+        filter: grayscale(1);
+      }
+   .mask-bg .pop .pop-bottom {
+    width: 80%;
+    height: 36px;
+    background: linear-gradient(272deg, #176825 0%, rgba(0, 0, 0, 0) 100%);
+    display: flex
+;
+    align-items: center;
+    /* display: none; */
+    justify-content: center;
+    margin: 0 auto 10px;
+    border-radius: 50px;
+}
+      .mask-bg .pop .title {
+        font-size: 24px;
+        text-align: center;
+        font-family: "SegoeUI";
+        margin-bottom: 28px;
+        margin-top: 4px;
+      }
+      .mask-bg .pop p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        padding: 0 10px;
+        line-height: 16px;
+      }
+      .mask-bg .pop p.red {
+        color: red;
+      }
+      .mask-bg .btn-style {
+        width: 120px;
+        height: 40px;
+        margin-top: 18px;
+        font-size: 20px;
+      }
+      .yus{
+          background: #f2f2f2!important;
+    border-color: #ccc!important;
+    color: #aaa!important;
+      }
+      .sp-check-btn{
+        width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 15px auto;
+}
+.sp-btn {
+    width: 50%;
+       font-size: 24px;
+    font-weight: 400;
+    /*background: #eff1f3;*/
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    /*border-radius: 40px;*/
+}
+.sp-btn.active{
+          background: #176825;
+    color: #fff;
+}
+#floating-icon {
+    position: fixed;
+    top: 35%;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+#floating-icon img {
+    width: 100%;
+    
+}
+      /********************** 首页  end ********************/
+    </style><script>
+layui.use(function(){
+  var carousel = layui.carousel;
+  // 渲染 - 常规轮播
+  carousel.render({
+    elem: '#carousel',
+    width: 'auto',
+     height: '200px'
+  });
+  
+});
+</script></head><body><div id="root" class="sp_system home-page"><section><div class="header-top layui-carousel" id="carousel"><div carousel-item><img  class="sp-img" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250226/c365d1869c906eaa4f0a112fb0a30580.jpg" alt="" /><img  class="sp-img" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/da34e025da56161a2e3073562e8d3c1b.jpg" alt="" /><img  class="sp-img" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/9d2e478d79b44bf7ac6273ab8baa4bf8.jpg" alt="" /></div><!--<img class="icon-email" src="/image/icon-message.png" alt="" />--><!--<div class="text">Hi！TOM</div>--></div><div class="ww"><div class="home-btn-wrap"><div class="group" id="rechargebtn" onclick="goto('/index/ctrl/recharge')"><div class="img-wrap"><img src="/image/recharge.png" alt="" /></div><p>Recharge</p></div><!-- <div class="group" id="servicebtn"  onclick="goto('/index/my/invite')">--><!--  <div class="img-wrap">--><!--    <img src="/image/invite.png" alt="" />--><!--  </div>--><!--  <p>Invite</p>--><!--</div>--><div class="group" onclick="goto('https://t.me/+MJ3aRhvf-o5lZTY8')"><div class="img-wrap"><img src="/image/telegram.png" alt="" /></div><p>Channel</p></div><div class="group" id="servicebtn"  onclick="goto('https://t.me/HeinekenOnline')"><div class="img-wrap"><img src="/image/kefu.png" alt="" /></div><p>Online</p></div><div class="group" id="Withdrawalbtn"  onclick="goto('/index/ctrl/deposit')"><div class="img-wrap"><img src="/image/withdraw.png" alt="" /></div><p>Withdraw</p></div></div><div class="sp-plan-btn"><div class="sp-btn active">Heineken A</div><div class="sp-btn">Heineken B</div></div><div><div class="sp-plan-tab"><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250226/f2c509396ba2f274329f82f2a5bba63b.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken A</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹499</span></li><li><span class="title-s">Daily</span><span class="">:₹124</span></li><li><span class="title-s">Total</span><span class="">:₹14880</span></li><li><span class="title-s">End day</span><span class="">:120day</span></li></ul></div><button type="button" class="btn-style buy" cid="101">
+                   Buy now
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/8fc6017f0b937e2d20c4a5910a29b5b3.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken B</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹1998</span></li><li><span class="title-s">Daily</span><span class="">:₹525</span></li><li><span class="title-s">Total</span><span class="">:₹73500</span></li><li><span class="title-s">End day</span><span class="">:140day</span></li></ul></div><button type="button" class="btn-style buy" cid="102">
+                   Buy now
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/179cfd671e5a7c5d96fba370be11d87f.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken C</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹4980</span></li><li><span class="title-s">Daily</span><span class="">:₹1383</span></li><li><span class="title-s">Total</span><span class="">:₹221280</span></li><li><span class="title-s">End day</span><span class="">:160day</span></li></ul></div><button type="button" class="btn-style buy" cid="103">
+                   Buy now
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/70ea037df9a5dd14ee357371d32ac50f.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken D</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹13880</span></li><li><span class="title-s">Daily</span><span class="">:₹4082</span></li><li><span class="title-s">Total</span><span class="">:₹734760</span></li><li><span class="title-s">End day</span><span class="">:180day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/048056e7cbc34927b80abc3a7d85f817.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken E</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹28800</span></li><li><span class="title-s">Daily</span><span class="">:₹9000</span></li><li><span class="title-s">Total</span><span class="">:₹1800000</span></li><li><span class="title-s">End day</span><span class="">:200day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/0eb73040517eca19d5a2604c688ce66c.png" alt="" /><div class="title">Daily income Daily withdrawal Heineken F</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹46800</span></li><li><span class="title-s">Daily</span><span class="">:₹15600</span></li><li><span class="title-s">Total</span><span class="">:₹3432000</span></li><li><span class="title-s">End day</span><span class="">:220day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/35f67459a4c174538b35137c95ef4aa1.jpeg" alt="" /><div class="title">Daily income Daily withdrawal Heineken G</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹78800</span></li><li><span class="title-s">Daily</span><span class="">:₹28142</span></li><li><span class="title-s">Total</span><span class="">:₹6754080</span></li><li><span class="title-s">End day</span><span class="">:240day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/ff5e0c540e4b43f2bdf35da6c5ad753c.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken H</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹106000</span></li><li><span class="title-s">Daily</span><span class="">:₹40769</span></li><li><span class="title-s">Total</span><span class="">:₹9784560</span></li><li><span class="title-s">End day</span><span class="">:240day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/5f079766ce61af6e0949c990aa8a9763.jpg" alt="" /><div class="title">Daily income Daily withdrawal Heineken L</div><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹188000</span></li><li><span class="title-s">Daily</span><span class="">:₹78333</span></li><li><span class="title-s">Total</span><span class="">:₹18799920</span></li><li><span class="title-s">End day</span><span class="">:240day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div></div><div class="sp-plan-tab sp-hide"><div class="sp-box"><div class="title">Daily income Daily withdrawal Heineken 1</div><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/03c34658cbce3bb57f10c4779c577e7f.jpg" alt="" /><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹3500</span></li><li><span class="title-s">Daily</span><span class="">:₹4500</span></li><li><span class="title-s">Total</span><span class="">:₹13500</span></li><li><span class="title-s">End day</span><span class="">:3day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><div class="title">Daily income Daily withdrawal Heineken 2</div><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/0d3a06738ac7d5078fea0c072410b199.jpg" alt="" /><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹7000</span></li><li><span class="title-s">Daily</span><span class="">:₹12000</span></li><li><span class="title-s">Total</span><span class="">:₹36000</span></li><li><span class="title-s">End day</span><span class="">:3day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><div class="title">Daily income Daily withdrawal Heineken 3</div><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/4bdb49b1e0da6c88d2eaa7a02c7876f1.jpg" alt="" /><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹15000</span></li><li><span class="title-s">Daily</span><span class="">:₹25000</span></li><li><span class="title-s">Total</span><span class="">:₹75000</span></li><li><span class="title-s">End day</span><span class="">:3day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div><div class="sp-box"><div class="title">Daily income Daily withdrawal Heineken 4</div><img class="sp-pic" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/026d44e18c210bc58c00a74d4e285178.jpg" alt="" /><div class="wrap"><ul><li><span class="title-s">Price</span><span class="">:₹30000</span></li><li><span class="title-s">Daily</span><span class="">:₹70000</span></li><li><span class="title-s">Total</span><span class="">:₹70000</span></li><li><span class="title-s">End day</span><span class="">:1day</span></li></ul></div><button type="button" class="btn-style yus">
+                  Pre-Sale
+                </button></div></div><div class="sp-plan-tab sp-hide"></div></div></div><!-- 底部 --><div class="fix-bottom"><div class="active" id="homeNav"><div class="fix-icon fix-icon1"></div><p>Home</p></div><div class="" id="invitationbtn"  onclick="goto('/index/my/invite.html')"><div class="fix-icon fix-icon2"></div><p>Invite</p></div><div class="" id="teamNav" onclick="goto('/index/ctrl/junior')"><div class="fix-icon fix-icon3"></div><p>Team</p></div><div class="" id="myNav" onclick="goto('/index/my/index.html')"><div class="fix-icon fix-icon4"></div><p>My</p></div></div></section></div><!-- 底部弹窗 --><div class="mask mask-bg"><div class="pop" id="pop"><img src="/image/pop-close.png" alt="" class="pop-close" /><div class="title">Heineken</div><p style="text-align: center;"><img alt="" src="https://gl.uou1lol-erbwns-duew7w.com/uploads/20250228/4d8001fca919a75020f36098659e1c9d.jpg" style="width: 333px; height: 163px;" /></p>
+
+<p style="text-align: center;"><span style="color:#336600;">Heineken APP was officially launched with the approval of relevant Indian departments. As the first long-term online application, it provides customers with a variety of money-making models to choose from. All customer funds are supervised by the state and distributed to each user through bank settlement. Joining Heineken APP is the best choice to achieve wealth freedom.<br />
+Recommended best way to make money: share your own exclusive link to major social platforms to invite them to join, you will earn generous commissions in the long term, thus achieving wealth freedom</span></p>
+
+<p style="text-align: center;">&nbsp;</p>
+<div class="pop-bottom" onclick="goto('https://t.me/+MJ3aRhvf-o5lZTY8')"><img src="/image/telegram.png" style="width:20px">Join the official channel</div></div></div><!--<div id="floating-icon"  onclick="goto('https://t.me/HeinekenOnline')"><img src="/image/kefu.png"></div>--><script src="/js/jquery-1.11.3.min.js"></script><script src="/js/index.js"></script><script>	function goto(url){
+			window.location.href = url;
+		}
+    //   layui.use(function () {
+    //     var dropdown = layui.dropdown;
+    //     // 渲染
+    //     dropdown.render({
+    //       elem: ".demo-dropdown-base", // 绑定元素选择器，此处指向 class 可同时绑定多个元素
+    //       data: [
+    //         {
+    //           title: "Plan A",
+    //           id: 100,
+    //           index: 0,
+    //         },
+    //         {
+    //           title: "Plan B",
+    //           id: 101,
+    //           index: 1,
+    //         },
+    //         {
+    //           title: "Plan C",
+    //           id: 102,
+    //           index: 2,
+    //         },
+    //       ],
+    //       click: function (obj) {
+    //         this.elem.find("span").text(obj.title);
+    //         $(".sp-plan-tab").eq(obj.index).show().siblings().hide();
+    //       },
+    //     });
+    //   });
+       
+        $(document).ready(function(){
+           var ug_token = "str-4267e49ce4fdf5bfd17f9bd0fdc48c3c";
+                 console.log(ug_token)
+            $('.buy').click(function(){ 
+            var cid = $(this).attr('cid');
+            layer.confirm('Are you sure you want to buy this plan?',{
+                title:'',
+                btn:['Yes','No']
+            },function(){
+                $.ajax({
+                    url: "/index/ctrl/lixibao_ru.html",
+                   data: {cid:cid,'ug_token':ug_token},
+                    type: 'POST',
+                    success: function (data) {
+                        layer.msg(data.info)
+                     setTimeout(function() {
+        window.location.reload();
+    }, 1000);
+                    }
+                })
+            },function(){
+                $('.layui-layer-move').remove();
+                //layer.msg('thank you.')
+            }
+            )
+          
+            })
+         });  
+          $(".sp-plan-btn .sp-btn").click(function () {
+    $(this).addClass("active").siblings().removeClass("active");
+    let _index = $(this).index();
+    $(".sp-plan-tab").eq(_index).show().siblings().hide();
+  });
+    </script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"91cfb5d94aa5671e","version":"2025.1.0","r":1,"token":"fb20b4c5a2ba4bff8776047def158a1e","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body></html>

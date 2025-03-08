@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Required Amount</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #f4f4f4;
+      }
+
+      img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        margin: 5px 0;
+      }
+
+      /* ✅ Highlight Rows where Duration is Less than 10 Days */
+      .highlight {
+        background-color: lightcoral;
+        color: white;
+        font-weight: bold;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        color: rgb(33, 165, 217);
+        background-color: #212121;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h2>Calculate Required Amount Before 10% Deduction</h2>
+
+      <label for="desiredAmount">Enter Required Amount (After Deduction):</label><br>
+      <input type="number" id="desiredAmount" placeholder="Enter amount"><br><br>
+
+      <button onclick="calculateRequiredAmount()">Calculate</button>
+
+      <h3 id="result"></h3>
+    </div>
+
+
+    <h2>Heineken Investment Plans</h2>
+    <table id="investmentTable">
+      <thead>
+        <tr>
+          <th>Sl</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Daily Income</th>
+          <th>Total Return</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      // ✅ Function to calculate the required amount before 10% deduction
+      function calculateRequiredAmount() {
+        let desiredAmount = parseFloat(document.getElementById("desiredAmount").value);
+
+        if (isNaN(desiredAmount) || desiredAmount <= 0) {
+          alert("Please enter a valid amount");
+          return;
+        }
+
+        let requiredAmount = desiredAmount / 0.9;
+        document.getElementById("result").innerText =
+          `You need to provide: ₹${formatAmount(requiredAmount.toFixed(2))} to get ₹${formatAmount(desiredAmount)} after 10% deduction.`;
+      }
+
+      // ✅ Function to fetch JSON and render the DataTable
+      async function renderTable() {
+        try {
+          const response = await fetch("./products.json");
+          const data = await response.json();
+
+          const tbody = document.querySelector("#investmentTable tbody");
+          tbody.innerHTML = "";
+
+          data.forEach((item, index) => {
+            const row = document.createElement("tr");
+            const durationDays = parseInt(item.duration.match(/\d+/g)[0]); // Extract number from duration
+
+            // ✅ Check if the duration is less than 10 Days
+            if (durationDays < 10) {
+              row.classList.add("highlight");
+            }
+
+            row.innerHTML = `
+                <td>${index+1}</td>
+                <td>${item.name}</td>
+                <td>${formatAmount(item.price)}</td>
+                <td>${formatAmount(item.daily_income)}</td>
+                <td>${formatAmount(item.total_return)}</td>
+                <td>${formatDuration(item.duration)}</td>
+            `;
+
+            tbody.appendChild(row);
+          });
+        } catch (error) {
+          console.error("Failed to fetch data:", error);
+        }
+      }
+
+      // ✅ Function to remove ₹ symbol and format amount
+      const formatAmount = (amount) => {
+        const cleanAmount = amount.replace(/[₹,]/g, ''); // Remove ₹ and commas
+        return "₹ " + parseInt(cleanAmount).toLocaleString('en-IN');
+      };
+
+      // ✅ Function to format the duration (add space and capitalize Day/Days)
+      const formatDuration = (duration) => {
+        const numberPart = duration.match(/\d+/g)[0]; // Extract the number
+        const dayText = (numberPart == 1) ? " Day" : " Days"; // Check if it's singular or plural
+        return numberPart + dayText;
+      };
+
+      // ✅ Load the table after page load
+      renderTable();
+    </script>
+
+  </body>
+
+</html>
