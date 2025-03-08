@@ -66,21 +66,29 @@
     <div class="container my-5">
       <h2 class="mb-4">Heineken Investment Plans</h2>
       <div class="table-responsive">
-        <table id="investmentTable" class="table table-bordered table-hover">
+        <table id="investmentTable" class="table table-bordered table-striped ">
           <thead class="table-light">
             <tr>
-              <th>Sl</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Daily Income</th>
-              <th>Total Return</th>
-              <th>Duration</th>
+              <th rowspan="2">Sl</th>
+              <th rowspan="2">Image</th>
+              <th rowspan="2">Name</th>
+              <th rowspan="2">Price</th>
+              <th rowspan="2">Daily Income</th>
+              <th rowspan="2">Total Return</th>
+              <th rowspan="2">Duration</th>
+              <th colspan="3" class="text-center">Commissions</th>
+            </tr>
+            <tr>
+              <th>L-1</th>
+              <th>L-2</th>
+              <th>L-3</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
     </div>
+
 
     <script>
       let updating = false; // flag to prevent infinite loop
@@ -146,22 +154,47 @@
             const row = document.createElement("tr");
             const durationDays = parseInt(item.duration.match(/\d+/g)[0]);
 
+            // Add red row highlight if duration is less than 10 days
             if (durationDays < 10) {
               row.classList.add("highlight");
             }
 
-            // Create a badge if pre is true
+            // Pre-Sale badge (blue) if applicable
             const preBadge = item.status && item.status.pre ?
               ' <span class="badge bg-info ms-2">Pre-Sale</span>' :
               "";
 
+            // "B" badge (red) if duration is less than 10 days
+            const bBadge = durationDays < 10 ?
+              ' <span class="badge bg-danger ms-2">B</span>' :
+              ' <span class="badge bg-success ms-2">A</span>';
+
+            // Calculate commissions: L1 = 27%, L2 = 3%, L3 = 2%
+            // Remove any non-numeric characters from price (like ₹ or commas)
+            const numericPrice = parseFloat(item.price.replace(/[₹,]/g, ''));
+            const commission1 = numericPrice * 0.27;
+            const commission2 = numericPrice * 0.03;
+            const commission3 = numericPrice * 0.02;
+
             row.innerHTML = `
         <td>${index + 1}</td>
-        <td>${item.name}${preBadge}</td>
+        <td>
+          <img src="${item.image}" alt="${item.name}" style="width:80px;height:80px;object-fit:cover;border-radius:5px;"/>
+        </td>
+        <td>${item.name}${preBadge}${bBadge}</td>
         <td>${formatAmount(item.price)}</td>
         <td>${formatAmount(item.daily_income)}</td>
         <td>${formatAmount(item.total_return)}</td>
         <td>${formatDuration(item.duration)}</td>
+        <td>
+          <span class="badge bg-primary">${formatAmount(commission1.toFixed(2))}</span>
+        </td>
+        <td>
+          <span class="badge bg-info text-dark">${formatAmount(commission2.toFixed(2))}</span>
+        </td>
+        <td>
+          <span class="badge bg-secondary">${formatAmount(commission3.toFixed(2))}</span>
+        </td>
       `;
             tbody.appendChild(row);
           });

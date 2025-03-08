@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import json
+import os
 
 # Path to your local HTML file
 file_path = "src_data_a.html"  # Replace with your file path
@@ -16,11 +17,14 @@ products = []
 
 # Find all <div class="sp-box">
 for item in soup.find_all('div', class_='sp-box'):
-    # Extract image URL
-    image = item.find('img', class_='sp-pic')['src']
+    # Extract image URL and convert it to a local path using only the file name
+    image_url = item.find('img', class_='sp-pic')['src']
+    filename = os.path.basename(image_url)
+    image = "img/" + filename
     
-    # Extract title
+    # Extract title and remove "Daily income Daily withdrawal" if present
     product_name = item.find('div', class_='title').text.strip()
+    product_name = product_name.replace("Daily income Daily withdrawal", "").strip()
     
     # Extract other details from <ul><li>
     details = item.find('div', class_='wrap').find_all('li')
@@ -32,10 +36,7 @@ for item in soup.find_all('div', class_='sp-box'):
     # Check for the Pre-Sale status
     status_obj = {}
     pre_button = item.find('button', class_="btn-style yus")
-    if pre_button and "Pre-Sale" in pre_button.text:
-        status_obj["pre"] = True
-    else:
-        status_obj["pre"] = False
+    status_obj["pre"] = True if pre_button and "Pre-Sale" in pre_button.text else False
     
     # Append the extracted data along with status to the list
     products.append({
