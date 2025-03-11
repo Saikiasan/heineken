@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Buy it to upgrade to VIP1",
+        "image": "images\\stable\\cef4feaef71f5114.jpg",
+        "amount": "330",
+        "cycle": "49 Days",
+        "daily_income": "231",
+        "total_return": "11,319",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP2",
+        "image": "images\\stable\\63427e3844c8d124.jpg",
+        "amount": "880",
+        "cycle": "49 Days",
+        "daily_income": "624.80",
+        "total_return": "30,615.20",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP3",
+        "image": "images\\stable\\320967342b5438ab.jpg",
+        "amount": "1,730",
+        "cycle": "49 Days",
+        "daily_income": "1,245.60",
+        "total_return": "61,034.40",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP4",
+        "image": "images\\stable\\cab975ad33d4437c.jpg",
+        "amount": "4,930",
+        "cycle": "49 Days",
+        "daily_income": "3,598.90",
+        "total_return": "176,346.10",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP5",
+        "image": "images\\stable\\3dd4577757203d33.jpg",
+        "amount": "15,730",
+        "cycle": "49 Days",
+        "daily_income": "11,640.20",
+        "total_return": "570,369.80",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP6",
+        "image": "images\\stable\\1ba0d0bad77e26f4.jpg",
+        "amount": "32,100",
+        "cycle": "49 Days",
+        "daily_income": "24,075",
+        "total_return": "1,179,675",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP7",
+        "image": "images\\stable\\9e4895cd87ec1148.jpg",
+        "amount": "67,500",
+        "cycle": "49 Days",
+        "daily_income": "54,000",
+        "total_return": "2,646,000",
+        "category": "Stable"
+    },
+    {
+        "title": "Buy it to upgrade to VIP8",
+        "image": "images\\stable\\bcdec04ec2efa70a.jpg",
+        "amount": "115,000",
+        "cycle": "49 Days",
+        "daily_income": "97,750",
+        "total_return": "4,789,750",
+        "category": "Stable"
+    }
+]

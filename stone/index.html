@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate Required Amount</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <style>
+      /* Custom styles */
+      .highlight {
+        background-color: lightcoral;
+        color: white;
+        font-weight: bold;
+      }
+
+      img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        color: rgb(33, 165, 217);
+        background-color: #212121;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Deduction Calculator Section -->
+    <div class="container my-5">
+      <h2 class="mb-4">Calculate Deduction Amounts</h2>
+      <div class="row g-3 align-items-center justify-content-center">
+        <div class="col-5 col-md-5">
+          <label for="amountBefore" class="form-label">
+            Balance
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-currency-bitcoin" viewBox="0 0 16 16">
+              <path
+                d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927z" />
+            </svg>
+          </label>
+          <input type="number" id="amountBefore" class="form-control" placeholder="Enter balance" />
+        </div>
+        <div class="col-1 col-md-1 d-flex align-items-center justify-content-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+          </svg>
+        </div>
+        <div class="col-5 col-md-5">
+          <label for="amountAfter" class="form-label">
+            Credit
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-currency-rupee" viewBox="0 0 16 16">
+              <path
+                d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z" />
+            </svg>
+          </label>
+          <input type="number" id="amountAfter" class="form-control" placeholder="Enter credit" />
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button onclick="clearFields()" class="btn btn-secondary">Clear</button>
+      </div>
+    </div>
+
+    <!-- Investment Plans Table Section -->
+    <div class="container my-5">
+      <h2 class="mb-4">Heineken Investment Plans (All Categories)</h2>
+      <div class="table-responsive">
+        <table id="investmentTable" class="table table-bordered table-striped">
+          <thead class="table-light">
+            <tr>
+              <th rowspan="2">Sl</th>
+              <th rowspan="2">Image</th>
+              <th rowspan="2">Name</th>
+              <th rowspan="2">Category</th>
+              <th rowspan="2">Price</th>
+              <th rowspan="2">Daily Income</th>
+              <th rowspan="2">Total Return</th>
+              <th rowspan="2">Cycle</th>
+              <th colspan="3" class="text-center">Commissions</th>
+            </tr>
+            <tr>
+              <th>L-1</th>
+              <th>L-2</th>
+              <th>L-3</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // --- Deduction Calculator (5% tax, minimum withdrawal 110) ---
+      let updating = false;
+      document.getElementById("amountBefore").addEventListener("input", function () {
+        if (updating) return;
+        updating = true;
+        const beforeValue = this.value.trim();
+        if (beforeValue !== "") {
+          const beforeAmount = parseFloat(beforeValue);
+          if (!isNaN(beforeAmount) && beforeAmount > 0) {
+            let computedAfter = beforeAmount * 0.95; // apply 5% tax
+            // Enforce a minimum withdrawal amount of 110
+            if (computedAfter < 110) {
+              computedAfter = 110;
+            }
+            document.getElementById("amountAfter").value = computedAfter.toFixed(2);
+          } else {
+            document.getElementById("amountAfter").value = "";
+          }
+        } else {
+          document.getElementById("amountAfter").value = "";
+        }
+        updating = false;
+      });
+
+      document.getElementById("amountAfter").addEventListener("input", function () {
+        if (updating) return;
+        updating = true;
+        const afterValue = this.value.trim();
+        if (afterValue !== "") {
+          let afterAmount = parseFloat(afterValue);
+          if (!isNaN(afterAmount) && afterAmount > 0) {
+            if (afterAmount < 110) {
+              alert("Minimum withdrawal amount is 110");
+              afterAmount = 110;
+              document.getElementById("amountAfter").value = "110.00";
+            }
+            const computedBefore = afterAmount / 0.95;
+            document.getElementById("amountBefore").value = computedBefore.toFixed(2);
+          } else {
+            document.getElementById("amountBefore").value = "";
+          }
+        } else {
+          document.getElementById("amountBefore").value = "";
+        }
+        updating = false;
+      });
+
+      function clearFields() {
+        document.getElementById("amountBefore").value = "";
+        document.getElementById("amountAfter").value = "";
+      }
+
+      // --- Table Data Rendering ---
+      // Format amount: remove non-numeric characters, convert to number, then format with commas.
+      function formatAmount(value) {
+        let num = parseFloat(value.toString().replace(/[^0-9.]/g, ""));
+        return "₹ " + num.toLocaleString("en-IN", {
+          minimumFractionDigits: 2
+        });
+      }
+
+      // Format cycle: remove extra spaces and capitalize Day(s)
+      function formatCycle(cycle) {
+        let match = cycle.match(/(\d+)\s*(day[s]?)/i);
+        if (match) {
+          let num = match[1];
+          let dayText = (num === "1") ? "Day" : "Days";
+          return num + " " + dayText;
+        }
+        return cycle;
+      }
+
+      // Fetch data from all category JSON files and merge them
+      async function fetchAllPlans() {
+        const categories = ["stable", "welfare", "activity"];
+        const promises = categories.map(cat =>
+          fetch(cat + "_plans.json").then(resp => resp.json()).catch(err => [])
+        );
+        let results = await Promise.all(promises);
+        return results.flat();
+      }
+
+      async function renderTable() {
+        try {
+          const data = await fetchAllPlans();
+          const tbody = document.querySelector("#investmentTable tbody");
+          tbody.innerHTML = "";
+
+          data.forEach((item, index) => {
+            const row = document.createElement("tr");
+            const formattedCycle = formatCycle(item.cycle);
+            // Calculate commissions based on the numeric value from the price.
+            let numericPrice = parseFloat(item.amount.replace(/[^0-9.]/g, ""));
+            const commission1 = numericPrice * 0.27;
+            const commission2 = numericPrice * 0.03;
+            const commission3 = numericPrice * 0.02;
+
+            // Optionally highlight rows if cycle (days) is less than 10
+            const durationDays = parseInt(item.cycle.match(/\d+/) ?.[0] || "0");
+
+            if (durationDays < 10) row.classList.add("highlight");
+
+            row.innerHTML = `
+              <td>${index + 1}</td>
+              <td><img src="${item.image}" alt="${item.title}" /></td>
+              <td>${item.title}</td>
+              <td>${item.category}</td>
+              <td>${formatAmount(item.amount)}</td>
+              <td>${formatAmount(item.daily_income)}</td>
+              <td>${formatAmount(item.total_return)}</td>
+              <td>${formattedCycle}</td>
+              <td><span class="badge bg-danger">${formatAmount(commission1.toFixed(2))}</span></td>
+              <td><span class="badge bg-warning text-dark">${formatAmount(commission2.toFixed(2))}</span></td>
+              <td><span class="badge bg-primary">${formatAmount(commission3.toFixed(2))}</span></td>
+            `;
+            tbody.appendChild(row);
+          });
+        } catch (error) {
+          console.error("Failed to fetch or render data:", error);
+        }
+      }
+
+      // Initialize table rendering.
+      renderTable();
+    </script>
+  </body>
+
+</html>
