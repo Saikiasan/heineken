@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investment Plans & Deduction Calculator</title>
+ <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .highlight {
+      background-color: lightcoral;
+      color: white;
+      font-weight: bold;
+    }
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .fixed-category {
+  background-color: #608da1;  /* light blue background for fixed category */
+  /* Add any additional fixed-category styles here */
+}
+
+.welfare-category {
+  background-color: #fff7e6;  /* light orange background for welfare category */
+  /* Add any additional welfare-category styles here */
+}
+
+.activity-category {
+  background-color: #f6ffed;  /* light green background for activity category */
+  /* Add any additional activity-category styles here */
+}
+
+  </style>
+</head>
+<body>
+  <!-- Deduction Calculator Section -->
+  <div class="container my-5">
+    <h2 class="mb-4">Deduction Calculator (5% Tax, Minimum Withdrawal 200)</h2>
+    <div class="row g-3 align-items-center justify-content-center">
+      <div class="col-5">
+        <label for="balance" class="form-label">Balance</label>
+        <input type="number" id="balance" class="form-control" placeholder="Enter balance">
+      </div>
+      <div class="col-1 d-flex align-items-center justify-content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+        </svg>
+      </div>
+      <div class="col-5">
+        <label for="credit" class="form-label">Credit</label>
+        <input type="number" id="credit" class="form-control" placeholder="Enter credit">
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <button onclick="clearCalculator()" class="btn btn-secondary">Clear</button>
+    </div>
+  </div>
+
+  <!-- Investment Plans Table Section -->
+  <div class="container my-5">
+    <h2 class="mb-4">Investment Plans</h2>
+    <div class="table-responsive">
+      <table id="plansTable" class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th rowspan="2">Sl</th>
+            <th rowspan="2">Image</th>
+            <th rowspan="2">Name</th>
+            <th rowspan="2">Category</th>
+            <th rowspan="2">Price</th>
+            <th rowspan="2">Daily Income</th>
+            <th rowspan="2">Total Revenue</th>
+            <th rowspan="2">Revenue</th>
+            <th colspan="3" class="text-center">Commissions</th>
+          </tr>
+          <tr>
+            <th>L-1</th>
+            <th>L-2</th>
+            <th>L-3</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // --- Deduction Calculator Logic ---
+    let updatingCalc = false;
+    const minWithdrawal = 200;
+    const taxRate = 0.05; // 5% tax deduction
+
+    document.getElementById("balance").addEventListener("input", function() {
+      if (updatingCalc) return;
+      updatingCalc = true;
+      const balanceVal = parseFloat(this.value);
+      if (!isNaN(balanceVal) && balanceVal > 0) {
+        let computedCredit = balanceVal * (1 - taxRate);
+        if (computedCredit < minWithdrawal) {
+          computedCredit = minWithdrawal;
+        }
+        document.getElementById("credit").value = computedCredit.toFixed(1);
+      } else {
+        document.getElementById("credit").value = "";
+      }
+      updatingCalc = false;
+    });
+
+    document.getElementById("credit").addEventListener("input", function() {
+      if (updatingCalc) return;
+      updatingCalc = true;
+      let creditVal = parseFloat(this.value);
+      if (!isNaN(creditVal) && creditVal > 0) {
+        // if (creditVal < minWithdrawal) {
+        //   alert("Minimum withdrawal amount is " + minWithdrawal);
+        //   creditVal = minWithdrawal;
+        //   document.getElementById("credit").value = creditVal.toFixed(2);
+        // }
+        const computedBalance = creditVal / (1 - taxRate);
+        document.getElementById("balance").value = computedBalance.toFixed(1);
+      } else {
+        document.getElementById("balance").value = "";
+      }
+      updatingCalc = false;
+    });
+
+    function clearCalculator() {
+      document.getElementById("balance").value = "";
+      document.getElementById("credit").value = "";
+    }
+
+    // --- Utility: Format Number ---
+    function formatNumber(num) {
+      if (isNaN(num)) return num;
+      return parseFloat(num).toLocaleString("en-IN", { maximumFractionDigits: 2 });
+    }
+
+    // --- Table Data Rendering ---
+    async function loadPlans() {
+      try {
+        // Fetch the JSON data from all_plans.json
+        const response = await fetch("all_plans.json");
+        const data = await response.json();
+        const tbody = document.querySelector("#plansTable tbody");
+        tbody.innerHTML = "";
+        data.forEach((item, index) => {
+          // Extract numeric price from the formatted price string.
+          let priceNum = parseFloat(item.price.replace(/[^0-9.]/g, ""));
+          // Commission rates: L1 = 35%, L2 = 2%, L3 = 1%
+          let commission1 = priceNum * 0.35;
+          let commission2 = priceNum * 0.02;
+          let commission3 = priceNum * 0.01;
+
+          
+          const row = document.createElement("tr");
+          // Add a category-specific class to the row.
+          if(item.category === "fixed") {
+          row.classList.add("fixed-category","table-primary");
+          } else if(item.category === "welfare") {
+          row.classList.add("welfare-category","table-warning");
+          } else if(item.category === "activity") {
+          row.classList.add("activity-category","table-success");
+          }
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td><img src="${item.image}" alt="${item.name}"></td>
+            <td>${item.name}</td>
+            <td class="text-capitalize">${item.category}</td>
+            <td>₹ ${formatNumber(item.price)}</td>
+            <td>₹ ${formatNumber(item.daily_earnings)}</td>
+            <td>₹ ${formatNumber(item.total_revenue)}</td>
+            <td>${item.revenue}</td>
+            <td><span class="badge bg-danger">₹ ${formatNumber(commission1.toFixed(1))}</span></td>
+            <td><span class="badge bg-warning text-dark">₹ ${formatNumber(commission2.toFixed(2))}</span></td>
+            <td><span class="badge bg-primary">₹ ${formatNumber(commission3.toFixed(1))}</span></td>
+          `;
+          tbody.appendChild(row);
+        });
+      } catch (err) {
+        console.error("Error loading plans:", err);
+      }
+    }
+
+    // Initialize table rendering.
+    loadPlans();
+  </script>
+  <script src="../navbar.js"></script>
+</body>
+</html>
